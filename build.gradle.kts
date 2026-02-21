@@ -43,6 +43,8 @@ dependencies {
 group = "com.example"
 version = "1.0.0"
 
+val mainClazz = "$group.ExamplePluginTest"
+
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
     val version = JavaVersion.VERSION_11.toString()
@@ -59,12 +61,21 @@ tasks.withType<AbstractArchiveTask>().configureEach {
     isReproducibleFileOrder = true
 }
 
+
+tasks.register(name = "run", type = JavaExec::class) {
+    classpath = sourceSets.test.get().runtimeClasspath
+    mainClass.set(mainClazz)
+
+    jvmArgs("-ea")
+    args("--developer-mode", "--debug")
+}
+
 tasks.register(name = "shadowJar", type = Jar::class) {
     dependsOn(configurations.testRuntimeClasspath)
     manifest {
         attributes(
             mapOf(
-                "Main-Class" to "com.example.ExamplePluginTest",
+                "Main-Class" to mainClazz,
                 "Multi-Release" to true
             )
         )
