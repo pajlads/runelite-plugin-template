@@ -3,7 +3,7 @@
     <option name="MAIN_CLASS_NAME" value="com.example.ExamplePluginTest" />
     <module name="example.test" />
     <option name="PROGRAM_PARAMETERS" value="--debug --developer-mode --disable-telemetry" />
-    <option name="VM_PARAMETERS" value="-ea --illegal-access=warn --add-opens=java.desktop/sun.awt=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED" />
+    <option name="VM_PARAMETERS" value="-ea --illegal-access=warn --add-opens=java.desktop/sun.awt=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.desktop/com.apple.eawt=ALL-UNNAMED" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

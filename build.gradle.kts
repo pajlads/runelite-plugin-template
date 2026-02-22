@@ -61,13 +61,18 @@ tasks.withType<AbstractArchiveTask>().configureEach {
     isReproducibleFileOrder = true
 }
 
-
 tasks.register(name = "run", type = JavaExec::class) {
     classpath = sourceSets.test.get().runtimeClasspath
     mainClass.set(mainClazz)
 
-    jvmArgs("-ea")
-    args("--developer-mode", "--debug")
+    args("--debug", "--developer-mode", "--disable-telemetry")
+    jvmArgs(
+        "-ea",
+        "--illegal-access=warn",
+        "--add-opens=java.desktop/sun.awt=ALL-UNNAMED",
+        "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+        "--add-opens=java.desktop/com.apple.eawt=ALL-UNNAMED",
+    )
 }
 
 tasks.register(name = "shadowJar", type = Jar::class) {
